@@ -23,8 +23,25 @@ print(dif)
 #Question 2
 print (sum(e[:3]))
 
-if 2600 in e:
-    value_index = e.index(2600)
+#Question 3
+if 2000 in e:
+    # value_index = e.index(2000)
+    value_index = True
 else:
     value_index = None
-print(value_index)
+print("Did I spend $2000 in any month:", value_index)
+
+#Question 4
+e.append(1980)
+print (e)
+
+#Question 5
+# new = e[3] - 200
+# e.pop(4)
+# e.append(new)
+
+# e[3] , e[5] = e[5] , e[3]
+# print (e)
+
+e[3] = e[3] - 200
+print("my new expenses: ",e)
