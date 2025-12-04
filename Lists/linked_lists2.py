@@ -82,19 +82,61 @@ class LinkedList:
                 itr.next = node
                 break
 
-                itr = itr.next
-                count += 1
+            itr = itr.next
+            count += 1
+
+    def insert_after_value(self, data_after, data_to_insert):
+    # Search for first occurence of data_after value in linked list
+        if self.head is None:
+            return
+        
+        if self.head.data == data_after:
+            self.head = Node(data_to_insert, self.head.next)
+            return
+        # Now insert data_to_insert after data_after node
+        itr = self.head
+        while itr:
+            if itr.data == data_after:
+                node = Node(data_to_insert, itr.next)
+                itr.next = node
+                break #stop after inserting
+            
+            itr = itr.next
+
+    def remove_by_value(self, data):
+        if self.head is None:
+            return
+        
+        if self.head.data == data:
+            self.head = self.head.next
+            return
+    # Remove first node that contains data
+        itr = self.head
+
+        while itr.next:
+            if itr.next.data == data:
+                itr.next = itr.next.next
+                break
+        
+            itr = itr.next
 
 if __name__ == '__main__':
     ll = LinkedList()
     # ll.insert_at_beginnning(62)
     # ll.insert_at_beginnning(17)
     # ll.insert_at_end(99)
-    ll.insert_values([56,66,12,77,12])
+    ll.insert_values(["banana","mango","grapes","orange"])
     print("length:", ll.get_length())
     ll.print()
-    ll.insert_at(0, 9)
-    ll.insert_at(1, 14)
-    ll.remove_at(3)
+    # ll.insert_at(0, 9)
+    # ll.insert_at(1, 14)
+    # ll.remove_at(3)
+    ll.insert_after_value("mango", "apple")
+    ll.insert_after_value("apple", "pawpaw")
+    ll.remove_by_value("orange")
+    ll.remove_by_value("banana")
+    ll.remove_by_value("mango")
+    ll.remove_by_value("apple")
+    ll.remove_by_value("grapes")
     ll.print()
     
