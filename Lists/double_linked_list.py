@@ -22,6 +22,33 @@ class Linkedlist:
 
         llstr += "None"    
         print(llstr)
+    
+    def print_backward(self):
+        #Print linked list in reverse direction. Use node.prev
+        if self.head is None:
+            print("List is empty!")
+            return
+        
+        #go to the last node
+        node = self.head
+        while node.next:
+            node = node.next
+
+        #now print backwards
+        llstr = ''
+        while node:
+            llstr += str(node.data) + '<->'
+            node = node.prev
+        
+        llstr += "None"
+        print(llstr)
+    
+    def debug_prev(self):
+        node = self.head
+        while node:
+            print(f"Node={node.data}, Prev={node.prev.data if node.prev else None}")
+            node = node.next
+
 
     def insert_at_start(self, data):
         new_node = Node(data, prev=None, next=self.head)
@@ -34,14 +61,16 @@ class Linkedlist:
     
     def insert_at_end(self, data):
         if self.head is None:
-            self.head = Node(data, None)
+            self.head = Node(data, None, None)
             return
         
         itr = self.head #traversal
         while itr.next:
             itr = itr.next
+            
 
-        itr.next = Node(data, None)
+        new_node = Node(data, itr, None)
+        itr.next = new_node
 
     def insert_at(self, newdata, data_insert):
         if self.head is None:
@@ -60,9 +89,6 @@ class Linkedlist:
             
             itr = itr.next
             
-    # def print_backward(self):
-        #Print linked list in reverse direction. Use node.prev
-
 if __name__ == '__main__':
     ll = Linkedlist()
     ll.insert_at_start(6)
@@ -71,3 +97,7 @@ if __name__ == '__main__':
     ll.insert_at(6, 9)
     ll.insert_at_end(2)
     ll.print_forward()
+    ll.debug_prev()
+    ll.print_backward()
+    
+    
